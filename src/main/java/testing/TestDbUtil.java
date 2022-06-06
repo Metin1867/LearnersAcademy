@@ -15,12 +15,8 @@ public class TestDbUtil {
 		Statement st = conn.createStatement();
 		String sql = "select user(), now(), DATABASE(), VERSION()";
 		ResultSet rs = st.executeQuery(sql);
-		while(rs.next()) {
-			System.out.println("--- row "+rs.getRow()+" ------------------------------");
-			for (int i=1; i<=rs.getMetaData().getColumnCount(); i++)
-				System.out.println(rs.getMetaData().getColumnLabel(i)
-									+ ": " +rs.getString(i));
-		}
+		DbUtil.delimiter = "\t";
+		db.printResultSet(rs);
 		st.close();
 		conn.close();
 	}
