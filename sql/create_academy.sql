@@ -110,3 +110,7 @@ CREATE TABLE IF NOT EXISTS classsubject (
 ALTER TABLE student DROP PRIMARY KEY;
 ALTER TABLE student ADD PRIMARY KEY (stuid);
 ALTER TABLE student MODIFY clsid_class INT;
+
+ALTER TABLE subject DROP FOREIGN KEY fk_subject_teacher1;
+ALTER TABLE subject CHANGE COLUMN teaid_expert teaid_expert INT NULL, DROP PRIMARY KEY, ADD PRIMARY KEY (sbjid);
+ALTER TABLE subject ADD CONSTRAINT fk_subject_teacher1 FOREIGN KEY (teaid_expert) REFERENCES teacher (teaid);
