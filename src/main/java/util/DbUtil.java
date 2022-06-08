@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /*
  * DbUtil to manage the database connection
@@ -24,7 +25,7 @@ public class DbUtil {
 		return con;
 	}
 
-	public void printResultSet(ResultSet rs) throws SQLException {
+	public static void printResultSet(ResultSet rs) throws SQLException {
 		if (header) {
 			for (int i=1; i<=rs.getMetaData().getColumnCount(); i++) {
 				System.out.print(rs.getMetaData().getColumnLabel(i));
@@ -40,6 +41,13 @@ public class DbUtil {
 			System.out.println();
 		}
 		
+	}
+
+	public static ResultSet getResultSet(String sql) throws ClassNotFoundException, SQLException {
+		Connection conn = getConn();
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		return rs;
 	}   
 
 }

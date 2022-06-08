@@ -32,6 +32,18 @@ public class Teacher {
 			
 	}
 
+	public Teacher(int teaid, String firstname, String lastname, Date dob, String email, String phone,
+			Timestamp created, Timestamp modified) {
+		this.teaid = teaid;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = phone;
+		this.created = created;
+		this.modified = modified;
+	}
+
 	public int getTeaid() {
 		return teaid;
 	}

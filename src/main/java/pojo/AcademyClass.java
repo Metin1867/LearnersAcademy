@@ -1,6 +1,8 @@
 package pojo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /* -----------------------------------------------------
 -- Table academy.class
@@ -13,13 +15,21 @@ CREATE TABLE IF NOT EXISTS class (
 		  PRIMARY KEY (clsid)
 ); */
 public class AcademyClass {
-	int clsid;
-	String label;
-	Date start;
-	Date end;
-
+	private int clsid;
+	private String label;
+	private Date start;
+	private Date end;
+	private List<ClassSubject> classSubjects = new ArrayList<>();
+	
 	public AcademyClass() {
 			
+	}
+
+	public AcademyClass(int clsid, String label, Date start, Date end) {
+		this.clsid = clsid;
+		this.label = label;
+		this.start = start;
+		this.end = end;
 	}
 
 	public int getClsid() {
@@ -57,6 +67,16 @@ public class AcademyClass {
 	@Override
 	public String toString() {
 		return "AcademyClass [clsid=" + clsid + ", label=" + label + ", start=" + start + ", end=" + end + "]";
+	}
+
+	public void addClassSubject(ClassSubject classSubject) {
+		classSubjects.add(classSubject);
+		
+	}
+
+	public List<ClassSubject> getClassSubjects() {
+		return classSubjects;
+		
 	}
 
 }

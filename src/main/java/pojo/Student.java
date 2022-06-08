@@ -38,6 +38,19 @@ public class Student {
 
 	}
 
+	public Student(int stuid, String firstname, String lastname, Date dob, String email, String phone,
+			Timestamp created, Timestamp modified, int clsid_class) {
+		this.stuid = stuid;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = phone;
+		this.created = created;
+		this.modified = modified;
+		this.clsid_class = -1;
+	}
+
 	public int getStuid() {
 		return stuid;
 	}
