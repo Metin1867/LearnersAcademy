@@ -135,7 +135,7 @@ public class AcademyClassDAO {
 
 	// retrieve
 	// one
-	public AcademyClass getAcademyClass(int clsid) {
+	public static AcademyClass getAcademyClass(int clsid) {
 		AcademyClass c=null;
 		Connection con;
 		try {
@@ -158,7 +158,7 @@ public class AcademyClassDAO {
 	}
 
 	// all
-	public List<AcademyClass> getAcademyClasss() {
+	public static List<AcademyClass> getAcademyClasss() {
 		ArrayList<AcademyClass> list=new ArrayList<>();
 		Connection con;
 		try {
@@ -179,7 +179,7 @@ public class AcademyClassDAO {
 		}
 		return list;		
 	}
-	private AcademyClass getAcademyClass(ResultSet rs) throws SQLException {
+	private static AcademyClass getAcademyClass(ResultSet rs) throws SQLException {
 		AcademyClass c=new AcademyClass();
 		c.setClsid(rs.getInt(1));
 		c.setLabel(rs.getString(2));

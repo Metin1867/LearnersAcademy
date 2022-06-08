@@ -69,4 +69,34 @@
     <servlet-name>StudentDeleteServlet</servlet-name>
     <url-pattern>/StudentDeleteServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TeachersServlet</display-name>
+    <servlet-name>TeachersServlet</servlet-name>
+    <servlet-class>servlet.TeachersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeachersServlet</servlet-name>
+    <url-pattern>/TeachersServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AcademyClassesServlet</display-name>
+    <servlet-name>AcademyClassesServlet</servlet-name>
+    <servlet-class>servlet.AcademyClassesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AcademyClassesServlet</servlet-name>
+    <url-pattern>/AcademyClassesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SubjectsServlet</display-name>
+    <servlet-name>SubjectsServlet</servlet-name>
+    <servlet-class>servlet.SubjectsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubjectsServlet</servlet-name>
+    <url-pattern>/SubjectsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

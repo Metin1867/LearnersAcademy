@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.SessionUtil;
+
 /**
  * Servlet implementation class Login
  */
@@ -29,8 +31,16 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter pw=response.getWriter();
+		RequestDispatcher rd=request.getRequestDispatcher("index.html");
+		rd.include(request, response);
+		if (SessionUtil.loggedIn(request)) {
+			pw.println("<h1>Backend Admin for Learner’s Academy<h1>");
+			pw.println("<a href='TeachersServlet'>Teachers</a>");
+			pw.println("<a href='SubjectsServlet'>Subjects</a>");
+			pw.println("<a href='ClasssesServlet'>Classes</a>");
+			pw.println("<a href='StudentsServlet'>Students</a>");
+		};
 	}
 
 	/**
@@ -52,12 +62,18 @@ public class Login extends HttpServlet {
 				// HttpSession
 				//
 				HttpSession hs=request.getSession();
-				hs.setAttribute("userid", user);   
-				pw.print("login successfull"); /*
+				hs.setAttribute("userid", user);   /*
 				*/
+				pw.println("login successfull");
+				pw.println("<h1>Backend Admin for Learner’s Academy<h1>");
+				pw.println("<a href='TeachersServlet'>Teachers</a>");
+				pw.println("<a href='SubjectsServlet'>Subjects</a>");
+				pw.println("<a href='ClasssesServlet'>Classes</a>");
+				pw.println("<a href='StudentsServlet'>Students</a>");
+
 			}
 			else {
-				pw.print("check the credentials");
+				pw.println("check the credentials");
 			}
 		else {
 			// String user=request.getParameter("user");

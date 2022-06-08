@@ -101,7 +101,7 @@ public class TeacherDAO {
 
 	// retrieve
 	// one
-	public Teacher getTeacher(int teaid) {
+	public static Teacher getTeacher(int teaid) {
 		Teacher t=null;
 		Connection con;
 		try {
@@ -124,7 +124,7 @@ public class TeacherDAO {
 	}
 
 	// all
-	public List<Teacher> getTeachers() {
+	public static List<Teacher> getTeachers() {
 		ArrayList<Teacher> list=new ArrayList<>();
 		Connection con;
 		try {
@@ -146,7 +146,7 @@ public class TeacherDAO {
 		return list;		
 	}
 	
-	private pojo.Teacher getTeacher(ResultSet rs) throws SQLException {
+	private static pojo.Teacher getTeacher(ResultSet rs) throws SQLException {
 		Teacher t=new Teacher();
 		t.setTeaid(rs.getInt(1));
 		t.setFirstname(rs.getString(2));
