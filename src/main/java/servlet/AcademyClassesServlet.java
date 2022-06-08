@@ -45,8 +45,8 @@ public class AcademyClassesServlet extends HttpServlet {
 	private void printAcademyClasses(PrintWriter pw, List<AcademyClass> academyClasses) {
 		// Menu Main/Refresh/Insert
 		pw.append("<a href='Login'><img src='data/menu3.png' alt='Menu' width='28' height='28'></a>");
-		pw.append(" | <a href='StudentsServlet'><img src='data/refresh.png' alt='Refresh' width='28' height='28'></a>");
-		pw.append(" | <a href='StudentEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
+		pw.append(" | <a href='AcademyClassesServlet'><img src='data/refresh.png' alt='Refresh' width='28' height='28'></a>");
+		pw.append(" | <a href='AcademyClassEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
 		pw.println("<br/><br/>");
 		pw.append("<table>");
 		pw.append("<tr>");

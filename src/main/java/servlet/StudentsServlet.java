@@ -60,7 +60,6 @@ public class StudentsServlet extends HttpServlet {
 		pw.append("</tr>");
 		// Data
 		for (Student stu : students) {
-			// pw.append(stu.toString()).append("<br>").println();
 			pw.append("<tr>").println();
 			pw.append("<td>").append(String.valueOf(stu.getStuid())).append("</td>").println();
 			pw.append("<td>").append(stu.getFirstname().toString()).append("</td>").println();
