@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS student (
     REFERENCES class (clsid)
 ); */
 public class Student {
-	int stuid;
-	String firstname;
-	String lastname;
+	int stuid=-1;
+	String firstname="";
+	String lastname="";
 	Date dob;
-	String email;
-	String phone;
+	String email="";
+	String phone="";
 	Timestamp created;
 	Timestamp modified;
 	int clsid_class = -1;

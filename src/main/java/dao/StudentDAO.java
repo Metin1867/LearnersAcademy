@@ -106,7 +106,7 @@ public class StudentDAO {
 
 	// retrieve
 	// one
-	public Student getStudent(int stuid) {
+	public static Student getStudent(int stuid) {
 		Student s=null;
 		Connection con;
 		try {
@@ -129,7 +129,7 @@ public class StudentDAO {
 	}
 
 	// all
-	public List<Student> getStudents() {
+	public static List<Student> getStudents() {
 		ArrayList<Student> list=new ArrayList<>();
 		Connection con;
 		try {
@@ -150,7 +150,7 @@ public class StudentDAO {
 		}
 		return list;		
 	}
-	private Student getStudent(ResultSet rs) throws SQLException {
+	private static Student getStudent(ResultSet rs) throws SQLException {
 		Student s=new Student();
 		s.setStuid(rs.getInt(1));
 		s.setFirstname(rs.getString(2));
