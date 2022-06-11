@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS teacher (
   PRIMARY KEY (teaid)
 ); */
 public class Teacher {
-	int teaid;
+	int teaid = -1;
 	String firstname;
 	String lastname;
 	Date dob;

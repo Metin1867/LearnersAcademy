@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.TeacherDAO;
 import pojo.Teacher;
+import util.ServletHTMLUtil;
 
 /**
  * Servlet implementation class TeachersServlet
@@ -39,6 +40,7 @@ public class TeachersServlet extends HttpServlet {
 
 	private void printTeachers(PrintWriter pw, List<Teacher> teachers) {
 		// Menu Main/Refresh/Insert
+		pw.append("<h1>Teacher Master List</h1><br>").println();
 		pw.append("<a href='Login'><img src='data/menu3.png' alt='Menu' width='28' height='28'></a>");
 		pw.append(" | <a href='TeachersServlet'><img src='data/refresh.png' alt='Refresh' width='28' height='28'></a>");
 		pw.append(" | <a href='TeacherEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
@@ -59,12 +61,12 @@ public class TeachersServlet extends HttpServlet {
 		for (Teacher tea : teachers) {
 			// pw.append(stu.toString()).append("<br>").println();
 			pw.append("<tr>").println();
-			pw.append("<td>").append(String.valueOf(tea.getTeaid())).append("</td>").println();
-			pw.append("<td>").append(tea.getFirstname().toString()).append("</td>").println();
-			pw.append("<td>").append(tea.getLastname()).append("</td>").println();
-			pw.append("<td>").append(String.valueOf(tea.getDob())).append("</td>").println();
-			pw.append("<td>").append(tea.getEmail()).append("</td>").println();
-			pw.append("<td>").append(tea.getPhone()).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(tea.getTeaid())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(tea.getFirstname().toString())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(tea.getLastname())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(tea.getDob())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(tea.getEmail())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(tea.getPhone())).append("</td>").println();
 			// Menu Edit/Delete Row
 			String cmdPars = "teaid="+tea.getTeaid();
 			pw.append("<td>").append("<a href='TeacherEditServlet?"+cmdPars+"'><img src='data/useredit.png' alt='Edit' width='30' height='30'></a>").println();
