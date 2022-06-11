@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 				pw.println("<h1>Backend Admin for Learner’s Academy<h1>");
 				pw.println("<a href='TeachersServlet'>Teachers</a>");
 				pw.println("<a href='SubjectsServlet'>Subjects</a>");
-				pw.println("<a href='ClasssesServlet'>Classes</a>");
+				pw.println("<a href='AcademyClassesServlet'>Classes</a>");
 				pw.println("<a href='StudentsServlet'>Students</a>");
 
 			}
