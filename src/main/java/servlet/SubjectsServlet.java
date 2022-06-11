@@ -41,9 +41,10 @@ public class SubjectsServlet extends HttpServlet {
 
 	private void printSubjects(PrintWriter pw, List<Subject> subjects) {
 		// Menu Main/Refresh/Insert
+		pw.append("<h1>Subject Master List</h1><br>").println();
 		pw.append("<a href='Login'><img src='data/menu3.png' alt='Menu' width='28' height='28'></a>");
 		pw.append(" | <a href='SubjectsServlet'><img src='data/refresh.png' alt='Refresh' width='28' height='28'></a>");
-		pw.append(" | <a href='SubjectsEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
+		pw.append(" | <a href='SubjectEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
 		pw.println("<br/><br/>");
 		pw.append("<table>");
 		pw.append("<tr>");
@@ -65,9 +66,9 @@ public class SubjectsServlet extends HttpServlet {
 				pw.append("<td>").append(String.valueOf(sbj.getTeaid_expert())).append("</td>").println();
 			// Menu Edit/Delete Row
 			String cmdPars = "sbjid="+sbj.getSbjid();
-			pw.append("<td>").append("<a href='AcademyClassEditServlet?"+cmdPars+"'><img src='data/useredit.png' alt='Edit' width='30' height='30'></a>").println();
+			pw.append("<td>").append("<a href='SubjectEditServlet?"+cmdPars+"'><img src='data/useredit.png' alt='Edit' width='30' height='30'></a>").println();
 			cmdPars = cmdPars+"&msg="+sbj.getTopic();
-			pw.append("|<a href='AcademyClassDeleteServlet?"+cmdPars+"'><img src='data/userdelete.png' alt='Delete' width='30' height='30'></a>");
+			pw.append("|<a href='SubjectDeleteServlet?"+cmdPars+"'><img src='data/userdelete.png' alt='Delete' width='30' height='30'></a>");
 			pw.append("</td>").println();
 			pw.append("</tr>").println();
 			System.out.println(sbj);

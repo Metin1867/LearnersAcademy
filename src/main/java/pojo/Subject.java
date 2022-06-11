@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS subject (
     REFERENCES teacher (teaid)
 ); */
 public class Subject {
-	int sbjid;
+	int sbjid = -1;
 	String topic;
 	int teaid_expert = -1;
 
