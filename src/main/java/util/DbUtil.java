@@ -1,6 +1,7 @@
 package util;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,6 +49,16 @@ public class DbUtil {
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery(sql);
 		return rs;
-	}   
+	}
+
+    public static Date jutilToSqlData(java.util.Date jutilDate) {
+        Date sqlDate = new Date(jutilDate.getTime());
+        return sqlDate;
+      }
+    
+    public static java.util.Date sqlToJUtilData(Date sqlDate) {
+        java.util.Date jutilDate = new java.util.Date(sqlDate.getTime());
+        return jutilDate;
+      }
 
 }
