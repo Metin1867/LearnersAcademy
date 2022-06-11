@@ -17,8 +17,8 @@ public class AcademyClassDAO {
 	public AcademyClassDAO() {
 
 	}
-	public AcademyClassDAO(AcademyClass s) {
-		academyClass = s;
+	public AcademyClassDAO(AcademyClass c) {
+		academyClass = c;
 	}
 	// insert
 	public int insert() {
@@ -137,6 +137,7 @@ public class AcademyClassDAO {
 	// one
 	public static AcademyClass getAcademyClass(int clsid) {
 		AcademyClass c=null;
+		ClassSubject cs=null;
 		Connection con;
 		try {
 			con = DbUtil.getConn();
@@ -146,6 +147,14 @@ public class AcademyClassDAO {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				c=getAcademyClass(rs);
+			}
+			sq1="select * from classsubject where clsid=?";
+			ps=con.prepareStatement(sq1);
+			ps.setInt(1, clsid);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				cs=getClassSubject(rs);
+				c.addClassSubject(cs);
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -157,6 +166,20 @@ public class AcademyClassDAO {
 		return c;		
 	}
 
+	private static ClassSubject getClassSubject(ResultSet rs) throws SQLException {
+		ClassSubject cs=new ClassSubject();
+		cs.setClsid(rs.getInt(1));
+		cs.setSbjid(rs.getInt(2));
+		cs.setStart(rs.getDate(3));
+		cs.setEnd(rs.getDate(4));
+		int clsid_teacher = rs.getInt(5);
+		if (rs.wasNull())
+			cs.setTeaid_teacher(-1);
+		else
+			cs.setTeaid_teacher(clsid_teacher);
+
+		return cs;
+	}
 	// all
 	public static List<AcademyClass> getAcademyClasss() {
 		ArrayList<AcademyClass> list=new ArrayList<>();

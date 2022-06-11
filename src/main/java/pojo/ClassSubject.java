@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS classsubject (
 ); */
 public class ClassSubject {
 	int clsid;
-	int sbjid;
+	int sbjid=-1;
 	Date start;
 	Date end;
 	int teaid_teacher = -1;

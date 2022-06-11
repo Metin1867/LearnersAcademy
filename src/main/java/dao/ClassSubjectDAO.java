@@ -29,7 +29,6 @@ public class ClassSubjectDAO {
 			String sq1="insert into classsubject values(?,?,?,?,?)";
 			PreparedStatement ps=conn.prepareStatement(sq1);
 
-			int teaid_teacher = -1;
 			ps.setInt(1, cs.getClsid());
 			ps.setInt(2, cs.getSbjid());
 			ps.setDate(3, cs.getStart());
@@ -40,6 +39,8 @@ public class ClassSubjectDAO {
 			else
 				ps.setInt(5, teaidTeacher);
 
+			System.out.println(ps);
+			
 			return ps.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

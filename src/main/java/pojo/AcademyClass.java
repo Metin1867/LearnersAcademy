@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS class (
 		  PRIMARY KEY (clsid)
 ); */
 public class AcademyClass {
-	private int clsid;
+	private int clsid=-1;
 	private String label;
 	private Date start;
 	private Date end;

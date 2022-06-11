@@ -37,6 +37,7 @@ public class AcademyClassesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath()).append("<br>").println();
+
 		response.setContentType("text/html");
 		List<AcademyClass> academyClasses = AcademyClassDAO.getAcademyClasss();
 		printAcademyClasses(pw, academyClasses);
@@ -44,6 +45,7 @@ public class AcademyClassesServlet extends HttpServlet {
 
 	private void printAcademyClasses(PrintWriter pw, List<AcademyClass> academyClasses) {
 		// Menu Main/Refresh/Insert
+		pw.append("<h1>Academy Class Master List</h1><br>").println();
 		pw.append("<a href='Login'><img src='data/menu3.png' alt='Menu' width='28' height='28'></a>");
 		pw.append(" | <a href='AcademyClassesServlet'><img src='data/refresh.png' alt='Refresh' width='28' height='28'></a>");
 		pw.append(" | <a href='AcademyClassEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
@@ -71,7 +73,7 @@ public class AcademyClassesServlet extends HttpServlet {
 			String cmdPars = "clsid="+cls.getClsid();
 			pw.append("<td>").append("<a href='AcademyClassEditServlet?"+cmdPars+"'><img src='data/useredit.png' alt='Edit' width='30' height='30'></a>").println();
 			cmdPars = cmdPars+"&msg="+cls.getLabel();
-			pw.append("|<a href='AcademyClassDeleteServlet?"+cmdPars+"'><img src='data/userdelete.png' alt='Delete' width='30' height='30'></a>");
+			pw.append("|<a href='./AcademyClassDeleteServlet?"+cmdPars+"'><img src='data/userdelete.png' alt='Delete' width='30' height='30'></a>");
 			pw.append("</td>").println();
 			pw.append("</tr>").println();
 			System.out.println(cls);
@@ -86,6 +88,7 @@ public class AcademyClassesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		System.out.println("AcademyClassesServlet.doPost");
 	}
 
 }
