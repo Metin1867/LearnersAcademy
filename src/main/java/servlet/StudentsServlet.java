@@ -2,8 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.StudentDAO;
 import pojo.Student;
+import util.ServletHTMLUtil;
 
 /**
  * Servlet implementation class StudentServlet
@@ -41,6 +40,7 @@ public class StudentsServlet extends HttpServlet {
 
 	private void printStudents(PrintWriter pw, List<Student> students) {
 		// Menu Main/Refresh/Insert
+		pw.append("<h1>Student Master List</h1><br>").println();
 		pw.append("<a href='Login'><img src='data/menu3.png' alt='Menu' width='28' height='28'></a>");
 		pw.append(" | <a href='StudentsServlet'><img src='data/refresh.png' alt='Refresh' width='28' height='28'></a>");
 		pw.append(" | <a href='StudentEditServlet'><img src='data/useradd.png' alt='Add' width='30' height='30'></a>");
@@ -61,16 +61,13 @@ public class StudentsServlet extends HttpServlet {
 		// Data
 		for (Student stu : students) {
 			pw.append("<tr>").println();
-			pw.append("<td>").append(String.valueOf(stu.getStuid())).append("</td>").println();
-			pw.append("<td>").append(stu.getFirstname().toString()).append("</td>").println();
-			pw.append("<td>").append(stu.getLastname()).append("</td>").println();
-			pw.append("<td>").append(String.valueOf(stu.getDob())).append("</td>").println();
-			pw.append("<td>").append(stu.getEmail()).append("</td>").println();
-			pw.append("<td>").append(stu.getPhone()).append("</td>").println();
-			if (stu.getClsid_class() == -1)
-				pw.append("<td>").append("</td>").println();
-			else
-				pw.append("<td>").append(String.valueOf(stu.getClsid_class())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getStuid())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getFirstname()).toString()).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getLastname())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getDob())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getEmail())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getPhone())).append("</td>").println();
+			pw.append("<td>").append(ServletHTMLUtil.getValue(stu.getClsid_class())).append("</td>").println();
 			// Menu Edit/Delete Row
 			String cmdPars = "stuid="+stu.getStuid();
 			pw.append("<td>").append("<a href='StudentEditServlet?"+cmdPars+"'><img src='data/useredit.png' alt='Edit' width='30' height='30'></a>").println();

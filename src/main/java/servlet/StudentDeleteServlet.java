@@ -51,12 +51,6 @@ public class StudentDeleteServlet extends HttpServlet {
 			msg = request.getParameter("msg");
 			System.out.println("Parameter stuid: "+stuid);
 			System.out.println("Parameter msg: "+msg);
-			/*pw.append("<div id='wrapper'>").println();
-			pw.append("<label for='yes_no_radio'>Do you agree to delete the student entry "
-					+ msg + " ?</label>").println();
-			pw.append("<p>").append("<input type='radio' name='yes_no' value='StudentDeleteServlet?confirmed=yes'>Yes</input>").append("</p>").println();
-			pw.append("<p>").append("<input type='radio' name='yes_no' value='StudentsServlet'>No</input>").append("</p>").println();
-			pw.append("</div>").println();*/
 
 			pw.append("<h1>Delete Confirmation</h1>").println();
 			pw.append("<form action='StudentDeleteServlet?confirmed=yes' method='post'>").println();

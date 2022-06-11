@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.StudentDAO;
 import pojo.Student;
+import util.ServletHTMLUtil;
 
 /**
  * Servlet implementation class StudentEditServlet
@@ -20,6 +21,7 @@ import pojo.Student;
 public class StudentEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private boolean isNew=true;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,19 +51,22 @@ public class StudentEditServlet extends HttpServlet {
 		pw.append("<h1>Student Maintenance</h1>");
 		if (stu == null)
 			stu = new Student();
-		pw.append("<form action='StudentEditServlet' method='post'>");
-		pw.append("Identifier <input type='number' name='stuid' value='"+stu.getStuid()+"'><br/>");
-		pw.append("First Name <input type='text' name='firstname' value='"+stu.getFirstname()+"'><br/>");  
-		pw.append("Last Name <input type='text' name='lastname'  value='"+stu.getLastname()+"'><br/>");  
-		pw.append("Birthday <input type='date' name='dob'  value='"+stu.getDob()+"'><br/>");  
-		pw.append("Email <input type='email' name='email' value='"+stu.getEmail()+"'><br/>");  
-		pw.append("Phone <input type='text' name='phone' value='"+stu.getPhone()+"'><br/>");  
-		if (stu.getClsid_class() == -1)
+		pw.append(ServletHTMLUtil.startFormPost("StudentEditServlet")); 
+		pw.append(ServletHTMLUtil.getNumberInput("Identifier", "stuid", stu.getStuid() ));
+		pw.append(ServletHTMLUtil.getTextInput("First Name", "firstname", stu.getFirstname() ));
+		pw.append(ServletHTMLUtil.getTextInput("Last Name", "lastname", stu.getLastname() ));
+		pw.append(ServletHTMLUtil.getTextInput("Birthday", "dob", stu.getDob() ));
+		pw.append(ServletHTMLUtil.getTextInput("Email", "email", stu.getEmail() ));
+		pw.append(ServletHTMLUtil.getTextInput("Phone", "phone", stu.getPhone()) );
+		pw.append(ServletHTMLUtil.getNumberInput("Class Identifier", "class", stu.getClsid_class() ));
+		pw.append(ServletHTMLUtil.getSubmitInput("register"));
+		pw.append(ServletHTMLUtil.endForm()); 
+
+		/*if (stu.getClsid_class() == -1)
 			pw.append("Student Class<input type='number' name='class' value='-1'><br/>");  
 		else
-			pw.append("Student Class<input type='number' name='class' value='"+stu.getClsid_class()+"'><br/>");  
-		pw.append("<input type='submit' name='register'><br/>");
-		pw.append("</form>");
+			pw.append("Student Class<input type='number' name='class' value='"+stu.getClsid_class()+"'><br/>");  */
+		
 	}
 
 	/**
@@ -71,17 +76,13 @@ public class StudentEditServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		int stuid = Integer.valueOf(request.getParameter("stuid"));
+		int stuid = ServletHTMLUtil.getIntValue(request.getParameter("stuid"));
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
-		Date dob = Date.valueOf(request.getParameter("dob"));
+		Date dob = ServletHTMLUtil.getDate(request.getParameter("dob"));
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		int clsid;
-		if (request.getParameter("class") == "")
-			clsid = -1;
-		else
-			clsid = Integer.valueOf(request.getParameter("class"));
+		int clsid = ServletHTMLUtil.getIntValue(request.getParameter("class"));
 		Student stu = new Student(stuid, firstname, lastname, dob, email, phone, new Timestamp(System.currentTimeMillis()), null, clsid);
 		System.out.println(stu);
 		
