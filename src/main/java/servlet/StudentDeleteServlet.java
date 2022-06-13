@@ -35,10 +35,7 @@ public class StudentDeleteServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		System.out.println("Parameter confirmed"+request.getParameter("confirmed"));
 		if ("yes".equals(request.getParameter("confirmed"))) {
-			System.out.println("Parameter stuid: "+stuid);
-			System.out.println("Parameter msg: "+msg);
 			System.out.println("Delete confirmed");
 			Student stu = new Student();
 			stu.setStuid(stuid);
@@ -49,8 +46,6 @@ public class StudentDeleteServlet extends HttpServlet {
 		} else {
 			stuid = Integer.valueOf(request.getParameter("stuid"));
 			msg = request.getParameter("msg");
-			System.out.println("Parameter stuid: "+stuid);
-			System.out.println("Parameter msg: "+msg);
 
 			pw.append("<h1>Delete Confirmation</h1>").println();
 			pw.append("<form action='StudentDeleteServlet?confirmed=yes' method='post'>").println();

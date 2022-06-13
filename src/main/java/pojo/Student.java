@@ -48,7 +48,7 @@ public class Student {
 		this.phone = phone;
 		this.created = created;
 		this.modified = modified;
-		this.clsid_class = -1;
+		this.clsid_class = clsid_class;
 	}
 
 	public int getStuid() {

@@ -36,36 +36,25 @@ public class ClassSubjectDeleteServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		System.out.println("Parameter confirmed"+request.getParameter("confirmed"));
 		if ("yes".equals(request.getParameter("confirmed"))) {
-			System.out.println("Parameter clsid: "+clsid);
-			System.out.println("Parameter clsid: "+sbjid);
-			System.out.println("Parameter msg: "+msg);
 			System.out.println("Delete confirmed");
 			ClassSubject csj = new ClassSubject();
 			csj.setClsid(clsid);
 			csj.setSbjid(sbjid);
 			new ClassSubjectDAO(csj).delete();
-			System.out.println("Forward with the Dispatcher!");
-			System.out.println("Forward from Delete action to AcademyClassEditServlet?clsid="+clsid);
+
 			RequestDispatcher rd = request.getRequestDispatcher("AcademyClassEditServlet?form&clsid="+clsid);
 			rd.forward(request, response);
 		} else {
 			clsid = Integer.valueOf(request.getParameter("clsid"));
 			sbjid = Integer.valueOf(request.getParameter("sbjid"));
 			msg = request.getParameter("msg");
-			System.out.println("Parameter clsid: "+clsid);
-			System.out.println("Parameter sbjid: "+sbjid);
-			System.out.println("Parameter msg: "+msg);
 
-			pw.append("<h1>Delete Confirmation</h1>").println();
-			System.out.println("form to ClassSubjectDeleteServlet?confirmed=yes");
+			pw.append("<h1>Delete Confirmation for the Class Subject</h1>").println();
 			pw.append("<form action='ClassSubjectDeleteServlet?confirmed=yes' method='post'>").println();
 			pw.append("<input type='submit' value='Yes'><br>").println();
 			pw.append("</form>").println();   
-			//String cmdPars = "clsid="+clsid; ?"+cmdPars+"
-			pw.append("<form action='AcademyClassEditServlet'>").println();
-			pw.append("<input type='text' name='clsid' value='"+clsid+"' hidden><br>").println();
+			pw.append("<form action='AcademyClassEditServlet?clsid="+clsid+"'>").println();
 			pw.append("<input type='submit' value='No'><br>").println();
 			pw.append("</form>").println();   
 		}

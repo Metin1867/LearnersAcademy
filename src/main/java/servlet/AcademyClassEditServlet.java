@@ -45,8 +45,6 @@ public class AcademyClassEditServlet extends HttpServlet {
 			clsid = Integer.valueOf(clsidStr);
 			isNew = false;
 		}
-		System.out.println("AcademyClassEditServlet.clsid= "+clsid);
-		System.out.println();
 		AcademyClass cls = AcademyClassDAO.getAcademyClass(clsid);
 		showEditForm(pw, cls);
 	}
@@ -100,7 +98,6 @@ public class AcademyClassEditServlet extends HttpServlet {
 			pw.append("<td>").append("<a href='ClassSubjectDeleteServlet?"+cmdPars+"'><img src='data/userdelete.png' alt='Delete' width='30' height='30'></a>");
 			pw.append("</td>").println();
 			pw.append("</tr>").println();
-			System.out.println(sbj);
 		}
 		pw.append("<table>");
 		

@@ -35,10 +35,7 @@ public class SubjectDeleteServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		System.out.println("Parameter confirmed"+request.getParameter("confirmed"));
 		if ("yes".equals(request.getParameter("confirmed"))) {
-			System.out.println("Parameter sbjid: "+sbjid);
-			System.out.println("Parameter msg: "+msg);
 			System.out.println("Delete confirmed");
 			Subject sbj = new Subject();
 			sbj.setSbjid(sbjid);
@@ -49,8 +46,6 @@ public class SubjectDeleteServlet extends HttpServlet {
 		} else {
 			sbjid = Integer.valueOf(request.getParameter("sbjid"));
 			msg = request.getParameter("msg");
-			System.out.println("Parameter sbjid: "+sbjid);
-			System.out.println("Parameter msg: "+msg);
 
 			pw.append("<h1>Delete Confirmation for the Subject</h1>").println();
 			pw.append("<form action='SubjectDeleteServlet?confirmed=yes' method='post'>").println();

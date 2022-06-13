@@ -35,10 +35,7 @@ public class TeacherDeleteServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		System.out.println("Parameter confirmed"+request.getParameter("confirmed"));
 		if ("yes".equals(request.getParameter("confirmed"))) {
-			System.out.println("Parameter teaid: "+teaid);
-			System.out.println("Parameter msg: "+msg);
 			System.out.println("Delete confirmed");
 			Teacher tea = new Teacher();
 			tea.setTeaid(teaid);
@@ -49,10 +46,8 @@ public class TeacherDeleteServlet extends HttpServlet {
 		} else {
 			teaid = Integer.valueOf(request.getParameter("teaid"));
 			msg = request.getParameter("msg");
-			System.out.println("Parameter teaid: "+teaid);
-			System.out.println("Parameter msg: "+msg);
 
-			pw.append("<h1>Delete Confirmation</h1>").println();
+			pw.append("<h1>Delete Confirmation for the Teacher</h1>").println();
 			pw.append("<form action='TeacherDeleteServlet?confirmed=yes' method='post'>").println();
 			pw.append("<input type='submit' value='Yes'><br>").println();
 			pw.append("</form>").println();   

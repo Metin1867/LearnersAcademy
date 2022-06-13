@@ -34,6 +34,7 @@ public class StudentEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("StudentEditServlet.doGet(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
@@ -49,8 +50,12 @@ public class StudentEditServlet extends HttpServlet {
 
 	private void showEditForm(PrintWriter pw, Student stu) {
 		pw.append("<h1>Student Maintenance</h1>");
-		if (stu == null)
+		if (stu == null) {
 			stu = new Student();
+			System.out.println("Student Maintenance: INSERT Form");
+		} else {
+			System.out.println("Student Maintenance: UPDATE Form");
+		}
 		pw.append(ServletHTMLUtil.startFormPost("StudentEditServlet")); 
 		pw.append(ServletHTMLUtil.getNumberInput("Identifier", "stuid", stu.getStuid() ));
 		pw.append(ServletHTMLUtil.getTextInput("First Name", "firstname", stu.getFirstname() ));
@@ -61,11 +66,6 @@ public class StudentEditServlet extends HttpServlet {
 		pw.append(ServletHTMLUtil.getNumberInput("Class Identifier", "class", stu.getClsid_class() ));
 		pw.append(ServletHTMLUtil.getSubmitInput("register"));
 		pw.append(ServletHTMLUtil.endForm()); 
-
-		/*if (stu.getClsid_class() == -1)
-			pw.append("Student Class<input type='number' name='class' value='-1'><br/>");  
-		else
-			pw.append("Student Class<input type='number' name='class' value='"+stu.getClsid_class()+"'><br/>");  */
 		
 	}
 
@@ -73,6 +73,7 @@ public class StudentEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("StudentEditServlet.doPost(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
@@ -84,13 +85,18 @@ public class StudentEditServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		int clsid = ServletHTMLUtil.getIntValue(request.getParameter("class"));
 		Student stu = new Student(stuid, firstname, lastname, dob, email, phone, new Timestamp(System.currentTimeMillis()), null, clsid);
-		System.out.println(stu);
+		// System.out.println("StudentEditServlet.doPost: " + stu);
 		
-		StudentDAO stuDAO = new StudentDAO(stu);
-		if (isNew)
-			stuDAO.insert();
-		else
-			stuDAO.update();
+		StudentDAO dao = new StudentDAO(stu);
+		if (isNew) {
+			System.out.println("Student DAO INSERT");
+			dao.insert();
+		} else {
+			System.out.println("Student DAO UPDATE");
+			dao.update();
+		}
+		
+		System.out.println("Redirect to StudentsServlet");
 		RequestDispatcher rd = request.getRequestDispatcher("StudentsServlet");
 		rd.forward(request, response);
 		

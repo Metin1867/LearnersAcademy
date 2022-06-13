@@ -32,13 +32,11 @@ public class AcademyClassDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("AcademyClassEditServlet.doGet(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		System.out.println("Parameter confirmed"+request.getParameter("confirmed"));
 		if ("yes".equals(request.getParameter("confirmed"))) {
-			System.out.println("Parameter clsid: "+clsid);
-			System.out.println("Parameter msg: "+msg);
 			System.out.println("Delete confirmed");
 			AcademyClass cls = new AcademyClass();
 			cls.setClsid(clsid);
@@ -49,10 +47,8 @@ public class AcademyClassDeleteServlet extends HttpServlet {
 		} else {
 			clsid = Integer.valueOf(request.getParameter("clsid"));
 			msg = request.getParameter("msg");
-			System.out.println("Parameter clsid: "+clsid);
-			System.out.println("Parameter msg: "+msg);
 
-			pw.append("<h1>Delete Confirmation for the class</h1>").println();
+			pw.append("<h1>Delete Confirmation for the Class</h1>").println();
 			pw.append("<form action='AcademyClassDeleteServlet?confirmed=yes' method='post'>").println();
 			pw.append("<input type='submit' value='Yes'><br>").println();
 			pw.append("</form>").println();   
@@ -66,6 +62,7 @@ public class AcademyClassDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("AcademyClassEditServlet.doPost(...)");
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -34,6 +34,7 @@ public class TeacherEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("TeacherEditServlet.doGet(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
@@ -49,8 +50,12 @@ public class TeacherEditServlet extends HttpServlet {
 
 	private void showEditForm(PrintWriter pw, Teacher tea) {
 		pw.append("<h1>Teacher Maintenance</h1>");
-		if (tea == null)
+		if (tea == null) {
 			tea = new Teacher();
+			System.out.println("Teacher Maintenance: INSERT Form");
+		} else {
+			System.out.println("Teacher Maintenance: UPDATE Form");
+		}
 		pw.append(ServletHTMLUtil.startFormPost("TeacherEditServlet")); 
 		pw.append(ServletHTMLUtil.getNumberInput("Subject Identifier", "teaid", tea.getTeaid() ));
 		pw.append(ServletHTMLUtil.getTextInput("First Name", "firstname", tea.getFirstname() ));
@@ -66,6 +71,7 @@ public class TeacherEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("TeacherEditServlet.doPost(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
@@ -76,14 +82,19 @@ public class TeacherEditServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		Teacher tea = new Teacher(teaid, firstname, lastname, dob, email, phone, new Timestamp(System.currentTimeMillis()), null);
-		System.out.println(tea);
+		// System.out.println("TeacherEditServlet.doPost: " + tea);
 		
-		TeacherDAO stuDAO = new TeacherDAO(tea);
+		TeacherDAO dao = new TeacherDAO(tea);
 		System.out.println("Teacher object will be " + (isNew ? "inserted." : "updated."));
-		if (isNew)
-			stuDAO.insert();
-		else
-			stuDAO.update();
+		if (isNew) {
+			System.out.println("Teacher DAO INSERT");
+			dao.insert();
+		} else {
+			System.out.println("Teacher DAO UPDATE");
+			dao.update();
+		}
+
+		System.out.println("Redirect to TeachersServlet");
 		RequestDispatcher rd = request.getRequestDispatcher("TeachersServlet");
 		rd.forward(request, response);
 		

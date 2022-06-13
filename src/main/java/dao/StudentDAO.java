@@ -66,9 +66,10 @@ public class StudentDAO {
 						+ ",phone=?"
 						+ ",created=?"
 						+ ",modified=?"
+						+ ",clsid_class=?"
 						+ " where stuid=?";
 			PreparedStatement ps=conn.prepareStatement(sq1);
-			ps.setInt(8, s.getStuid());
+			ps.setInt(9, s.getStuid());
 			ps.setString(1, s.getFirstname());
 			ps.setString(2, s.getLastname());
 			ps.setDate(3, s.getDob());
@@ -76,6 +77,7 @@ public class StudentDAO {
 			ps.setString(5, s.getPhone());
 			ps.setTimestamp(6, s.getCreated());
 			ps.setTimestamp(7, s.getModified());
+			ps.setInt(8, s.getClsid_class());
 			return ps.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

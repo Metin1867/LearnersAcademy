@@ -36,6 +36,7 @@ public class SubjectEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("SubjectEditServlet.doGet(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
@@ -51,8 +52,12 @@ public class SubjectEditServlet extends HttpServlet {
 
 	private void showEditForm(PrintWriter pw, Subject sbj) {
 		pw.append("<h1>Subject Maintenance</h1>");
-		if (sbj == null)
+		if (sbj == null) {
 			sbj = new Subject();
+			System.out.println("Subject Maintenance: INSERT Form");
+		} else {
+			System.out.println("Subject Maintenance: UPDATE Form");
+		}
 		pw.append(ServletHTMLUtil.startFormPost("SubjectEditServlet")); 
 		pw.append(ServletHTMLUtil.getNumberInput("Subject Identifier", "sbjid", sbj.getSbjid()));
 		pw.append(ServletHTMLUtil.getTextInput("Topic", "topic", sbj.getTopic()));
@@ -67,6 +72,7 @@ public class SubjectEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("SubjectEditServlet.doPost(...)");
 		PrintWriter pw = response.getWriter();
 		pw.append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
@@ -79,11 +85,14 @@ public class SubjectEditServlet extends HttpServlet {
 		sbj.setTeaid_expert(teaid);
 		System.out.println(sbj);
 		
-		SubjectDAO sbjDAO = new SubjectDAO(sbj);
-		if (isNew)
-			sbjDAO.insert();
-		else
-			sbjDAO.update();
+		SubjectDAO dao = new SubjectDAO(sbj);
+		if (isNew) {
+			System.out.println("Subject DAO INSERT");
+			dao.insert();
+		} else {
+			System.out.println("Subject DAO UPDATE");
+			dao.update();
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("SubjectsServlet");
 		rd.forward(request, response);
 		

@@ -76,7 +76,6 @@ public class AcademyClassesServlet extends HttpServlet {
 			pw.append("|<a href='./AcademyClassDeleteServlet?"+cmdPars+"'><img src='data/userdelete.png' alt='Delete' width='30' height='30'></a>");
 			pw.append("</td>").println();
 			pw.append("</tr>").println();
-			System.out.println(cls);
 		}
 		pw.append("<table>");
 		
