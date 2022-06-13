@@ -179,4 +179,24 @@
     <servlet-name>ClassSubjectDeleteServlet</servlet-name>
     <url-pattern>/ClassSubjectDeleteServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllSubjectsClassesServlet</display-name>
+    <servlet-name>AllSubjectsClassesServlet</servlet-name>
+    <servlet-class>reports.AllSubjectsClassesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllSubjectsClassesServlet</servlet-name>
+    <url-pattern>/AllSubjectsClassesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClassReportServlet</display-name>
+    <servlet-name>ClassReportServlet</servlet-name>
+    <servlet-class>reports.ClassReportServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClassReportServlet</servlet-name>
+    <url-pattern>/ClassReportServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

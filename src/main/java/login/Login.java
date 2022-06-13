@@ -35,11 +35,12 @@ public class Login extends HttpServlet {
 		RequestDispatcher rd=request.getRequestDispatcher("index.html");
 		rd.include(request, response);
 		if (SessionUtil.loggedIn(request)) {
-			pw.println("<h1>Backend Admin for Learner’s Academy<h1>");
+			pw.println("<h1>Backend Admin for Learner's Academy<h1>");
 			pw.println("<a href='TeachersServlet'>Teachers</a>");
 			pw.println("<a href='SubjectsServlet'>Subjects</a>");
 			pw.println("<a href='AcademyClassesServlet'>Classes</a>");
-			pw.println("<a href='StudentsServlet'>Students</a>");
+			pw.println("<a href='StudentsServlet'>Students</a><br><br>");
+			pw.println("<a href='reports.html'>Reports</a>");
 		};
 	}
 
@@ -69,7 +70,8 @@ public class Login extends HttpServlet {
 				pw.println("<a href='TeachersServlet'>Teachers</a>");
 				pw.println("<a href='SubjectsServlet'>Subjects</a>");
 				pw.println("<a href='AcademyClassesServlet'>Classes</a>");
-				pw.println("<a href='StudentsServlet'>Students</a>");
+				pw.println("<a href='StudentsServlet'>Students</a><br><br>");
+				pw.println("<a href='reports.html'>Reports</a>");
 
 			}
 			else {
